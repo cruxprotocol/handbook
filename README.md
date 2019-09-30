@@ -32,8 +32,6 @@ CRUX allows any dApp to talk to any Wallet securely with the User's consent. No 
 
 CRUX is designed to drastically lower the barrier of entry for new users into the blockchain ecosystem.
 
-[diagram]
-
 CRUX achieves this with 3 components:  
 1. CRUX Identity - A globally unique, human-readable secure identity stored in a User's wallet.  
 2. CRUXPay Protocol - Pay to a human readable name. Unified experience across cryptocurrencies.   
