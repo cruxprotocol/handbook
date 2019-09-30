@@ -216,11 +216,11 @@ So Three layers work together -
 2. BNS Nodes - Hash of ZoneFile is mapped to the owner Public Key and the Zonefile itself.
 3. Gaia Hub - ZoneFile contains URL to the User's Gaia Hub of choice.
 
-An individual Gaia Hub may not be decentralized, and it does not need to be. CRUX provides all the necessary privacy and security guarantees by assuring the following -  
+An individual Gaia Hub may or may not be decentralized, and it does not need to be. CRUX provides all the necessary privacy and security guarantees by assuring the following -  
 
 1. User owns keypair securely in the Wallet. No one else ever gets to see the private key.
 2. The Wallet or the User can choose to use their own Gaia Hubs. There is no dependency on CRUX or the creators of CRUX.
-3. Anyone trying to read data from a Gaia Hub can verify Authenticity and Integrity using a trusted PKI. The BNS Network acts as our PKI.
+3. Anyone trying to read data from a Gaia Hub can verify Authenticity and Integrity of a file's using a trusted PKI. The BNS Network acts as our PKI. This means any data being written must contain an HMAC.
 
 
 #### 4.2.2 Standardizing Crypto Payments
@@ -243,7 +243,7 @@ A securely stored identity in a User's Wallet allows anyone to easily establish 
 This can be achieved because anyone can now resolve a human readable CRUX ID to the Public Key of the ID owner. Elliptic-curve Diffie–Hellman (ECDH) helps the Application and the Wallet both derive the same shared secret.
 
 This means, independent of the transport layer used, at CRUX's level we can implement secure communication between Application and Wallet.
-We use WebRTC as the transport layer for CRUXConnect. WebRTC allows two peers to exchange data without intermediatries. The peers need the assistance of an entity generalized as the 'Bridge Server' which helps the peers discover each other on the network. Once discovered, the two peers can independantly speakto each other without need the Bridge Server, until network conditions change such that they can no longer find each other. 
+We use WebRTC as the transport layer for CRUXConnect. WebRTC allows two peers to exchange data without intermediaries. The peers need the assistance of an entity generalized as the 'Bridge Server' which helps the peers discover each other on the network. Once discovered, the two peers can independantly speakto each other without need the Bridge Server, until network conditions change such that they can no longer find each other. 
 
 ![Cconect](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/cruxconnect.png)
 
