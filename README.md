@@ -140,11 +140,24 @@ Matt should not be exposed to any other blockchain implementation details. The o
 - How much he wants to pay
 
 This needs to happen with Emily's privacy in mind. Only addresses that she consents to must be made public.
-The CRUX ID to Address mapping powering this experiency should be securely verifyable by Matt's Wallet. Matt must be guaranteed he is paying to the right address. 
+The CRUX ID to Address mapping powering this experience should be securely verifiable by Matt's Wallet. Matt must be guaranteed he is paying to the right address. 
 
+#### Architecture
 ### III. Ecosystem Interoperability - CRUXConnect Protocol
 [diagram]
 
+With CRUX IDs we have a universal verifiable identity owned by Users in their Wallets. 
+
+CRUXConnect protocol establishes the following:
+
+Firstly, an on-demand end-to-end encrypted communication channel between User's Wallet and any Application (decentralized or conventional)  
+Secondly, A common language for Applications to 'talk' to Wallets. Applications want to interact with the Blockchain in a variety of ways **with the User's explicit consent**:
+- Applications should be able to request payments from the User.
+- Applications should be able to schedule recurring payment requests
+- Applications should be able to access a smart contract's interface using a transaction
+- Applications should be able to simply validate the identity of its User, using CRUX ID, similarly to how "Login With Google" works. CRUX should enable Applications to 'Login With CRUX'.
+
+#### Architecture
 
 ## Appendices
 ### I. Background Study
