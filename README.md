@@ -243,6 +243,9 @@ A securely stored identity in a User's Wallet allows anyone to easily establish 
 This can be achieved because anyone can now resolve a human readable CRUX ID to the Public Key of the ID owner. Elliptic-curve Diffie–Hellman (ECDH) helps the Application and the Wallet both derive the same shared secret.
 
 This means, independent of the transport layer used, at CRUX's level we can implement secure communication between Application and Wallet.
+We use WebRTC as the transport layer for CRUXConnect. WebRTC allows two peers to exchange data without intermediatries. The peers need the assistance of an entity generalized as the 'Bridge Server' which helps the peers discover each other on the network. Once discovered, the two peers can independantly speakto each other without need the Bridge Server, until network conditions change such that they can no longer find each other. 
+
+![Cconect](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/cruxconnect.png)
 
 Users can whitelist individual Applications in their Wallet to whom they want to grant communication rights to. 
 
@@ -251,7 +254,7 @@ Applications can connect to User's CRUX ID residing in the User's Wallet and com
 2. PaymentRequest - For financial transactions, Applications can request a specific standardized currency, and a specific amount. The User will get a Payment Request notification on their Website.
 3. IdentityProofRequest - The Application can ask the User to prove the ownership of the identity with this. This can be used to authenticate users securely for any use case.
 
-CRUXConnect can be consued as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with 1 line of code change. 
+CRUXConnect can be consumed as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with 1 line of code change. 
 
 
 ## 5 Appendices
