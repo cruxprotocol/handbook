@@ -99,14 +99,52 @@ These Applications need to interact with the Blockchain via the User's Wallet. T
 
 
 ## Solution
-### Key Tenets
-### Abstract
+
+This identity is used in two distinct protocols - the CRUXPay Protocol & the CRUXGateway Protocol.
+CRUXPay tackles the problem of easy human readable identifiers for cryptocurrency addresses.
+CRUXConnect aims to bridge the gap between Wallets & Applications with a secure end-to-end encrypted communication channel and establishes a language for Wallets & Applications to understand each other.
+   
+
+
 ### I. Universal Identity - Crux ID
 [diagram]
+
+Our solution to the above outlined problems is centered around the concept of a Universal Identity owned by the User - called a CRUX ID.
+The CRUX ID is represented by a globally unique human readable name such as `emily@crux`. This human readable name is tied to a Private Key stored securely in any Wallet of the user's choice.
+
+It's a way for Users to represent cryptocurrency addresses of their choice with an easy to remember human readable name.
+
+A CRUX ID is required to be 
+- Globally unique - Every User can have 1 or more unique CRUX ID
+- Human readable - IDs must be easy to read and communicate
+- Strongly owned - The proof of identity must reside securely only in any secure Wallet of User's choice 
+
+
+
+#### Architecture
+
+
+
 ### II. P2P Crypto Payments for Humans - CRUXPay Protocol
+
+With CRUX IDs we have a universal verifiable identity owned by Users in their Wallets.
+
+CRUXPay Protocol is a layer which allows Users to bind cryptocurrency addresses of their choice - to this identity.
+
 [diagram]
+
+Matt should be able to pay to Emily by simply entering her CRUX ID `emily@crux` in his Wallet. Matt may or may not have a CRUX ID himself.
+Matt should not be exposed to any other blockchain implementation details. The only things relevant to him are - 
+- Emily's CRUX ID
+- The cryptocurrency he wants to pay in
+- How much he wants to pay
+
+This needs to happen with Emily's privacy in mind. Only addresses that she consents to must be made public.
+The CRUX ID to Address mapping powering this experiency should be securely verifyable by Matt's Wallet. Matt must be guaranteed he is paying to the right address. 
+
 ### III. Ecosystem Interoperability - CRUXConnect Protocol
 [diagram]
+
 
 ## Appendices
 ### I. Background Study
