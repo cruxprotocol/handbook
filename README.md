@@ -1,8 +1,27 @@
-
 # CRUX Protocol
 
-## Contents
+### Contents
 
+* [1 What is CRUX?](#1-what-is-crux)
+* [2 Motivation &amp; Problem](#2-motivation--problem)
+    * [2.1 Stakeholders](#21-stakeholders)
+    * [2.2 Analysis](#22-analysis)
+        * [2.2.1 Scenario 1 - P2P Interactions](#221-scenario-1---p2p-interactions)
+        * [2.2.2 Scenario 2 - Interactions with Applications](#222-scenario-2---interactions-with-applications)
+* [3 Solution](#3-solution)
+    * [3.1 Universal Identity - Crux ID](#31-universal-identity---crux-id)
+    * [3.2 P2P Crypto Payments for Humans - CRUXPay Protocol](#32-p2p-crypto-payments-for-humans---cruxpay-protocol)
+    * [3.3 Ecosystem Interoperability - CRUXConnect Protocol](#33-ecosystem-interoperability---cruxconnect-protocol)
+* [4 Architecture Overview](#4-architecture-overview)
+    * [4.1 CRUX ID](#41-crux-id)
+    * [4.2 CRUXPay Protocol](#42-cruxpay-protocol)
+        * [4.2.1 Secure Storage of Address Mapping](#421-secure-storage-of-address-mapping)
+        * [4.2.2 Standardizing Crypto Payments](#422-standardizing-crypto-payments)
+    * [4.3 CRUXConnect Protocol](#43-cruxconnect-protocol)
+* [5 Appendices](#5-appendices)
+    * [5.1 Background Study](#51-background-study)
+    * [5.2 Risk Analysis](#52-risk-analysis)
+    * [5.3 Roadmap](#53-roadmap)
 
 
 ## 1 What is CRUX?
