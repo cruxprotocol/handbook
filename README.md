@@ -258,6 +258,5 @@ CRUXConnect can be consumed as a Web3Provider, which means any dApp using web3 a
 
 
 ## 5 Appendices
-### 5.1 Background Study
-### 5.2 Risk Analysis
-### 5.3 Roadmap
+### 5.1 [Background Study](https://github.com/cruxprotocol/handbook/blob/master/background.md)
+### 5.2 [Risk Analysis](https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md)
