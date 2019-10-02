@@ -2,26 +2,27 @@
 
 ### Contents
 
-* [1 What is CRUX?](#1-what-is-crux)
-* [2 Motivation &amp; Problem](#2-motivation--problem)
-    * [2.1 Stakeholders](#21-stakeholders)
-    * [2.2 Analysis](#22-analysis)
+  * [1 What is CRUX?](#1-what-is-crux)
+  * [2 Motivation &amp; Problem](#2-motivation--problem)
+     * [2.1 Stakeholders](#21-stakeholders)
+     * [2.2 Analysis](#22-analysis)
         * [2.2.1 Scenario 1 - P2P Interactions](#221-scenario-1---p2p-interactions)
         * [2.2.2 Scenario 2 - Interactions with Applications](#222-scenario-2---interactions-with-applications)
-* [3 Solution](#3-solution)
-    * [3.1 Universal Identity - Crux ID](#31-universal-identity---crux-id)
-    * [3.2 P2P Crypto Payments for Humans - CRUXPay Protocol](#32-p2p-crypto-payments-for-humans---cruxpay-protocol)
-    * [3.3 Ecosystem Interoperability - CRUXConnect Protocol](#33-ecosystem-interoperability---cruxconnect-protocol)
-* [4 Architecture Overview](#4-architecture-overview)
-    * [4.1 CRUX ID](#41-crux-id)
-    * [4.2 CRUXPay Protocol](#42-cruxpay-protocol)
+  * [3 Solution](#3-solution)
+     * [3.1 Universal Identity - CRUX ID](#31-universal-identity---crux-id)
+     * [3.2 P2P Crypto Payments for Humans - CRUXPay Protocol](#32-p2p-crypto-payments-for-humans---cruxpay-protocol)
+     * [3.3 Ecosystem Interoperability - CRUXGateway Protocol](#33-ecosystem-interoperability---cruxgateway-protocol)
+  * [4 Architecture Overview](#4-architecture-overview)
+     * [4.1 CRUX ID](#41-crux-id)
+        * [4.1.1 Reserving a Name for a PublicKey - AKA "Registration of CRUX ID"](#411-reserving-a-name-for-a-publickey---aka-registration-of-crux-id)
+        * [4.1.2 Resolving a Name to a PublicKey - AKA "CRUX ID as Public Key Infrastructure"](#412-resolving-a-name-to-a-publickey---aka-crux-id-as-public-key-infrastructure)
+     * [4.2 CRUXPay Protocol](#42-cruxpay-protocol)
         * [4.2.1 Secure Storage of Address Mapping](#421-secure-storage-of-address-mapping)
         * [4.2.2 Standardizing Crypto Payments](#422-standardizing-crypto-payments)
-    * [4.3 CRUXConnect Protocol](#43-cruxconnect-protocol)
-* [5 Appendices](#5-appendices)
-    * [5.1 Background Study](#51-background-study)
-    * [5.2 Risk Analysis](#52-risk-analysis)
-    * [5.3 Roadmap](#53-roadmap)
+     * [4.3 CRUXGateway Protocol](#43-cruxgateway-protocol)
+  * [5 Appendices](#5-appendices)
+     * [5.1 <a href="https://github.com/cruxprotocol/handbook/blob/master/background.md">Background Study</a>](#51-background-study)
+     * [5.2 <a href="https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md">Risk Analysis</a>](#52-risk-analysis)
 
 
 ## 1 What is CRUX?
@@ -119,13 +120,13 @@ These Applications need to interact with the Blockchain via the User's Wallet. T
 
 ## 3 Solution
 
-This identity is used in two distinct protocols - the CRUXPay Protocol & the CRUXGateway Protocol.
+We propose a solution centered around a user owned identity called CRUX ID. This identity is used in two distinct protocols - the CRUXPay Protocol & the CRUXGateway Protocol.
 CRUXPay tackles the problem of easy human readable identifiers for cryptocurrency addresses.
-CRUXConnect aims to bridge the gap between Wallets & Applications with a secure end-to-end encrypted communication channel and establishes a language for Wallets & Applications to understand each other.
+CRUXGateway aims to bridge the gap between Wallets & Applications with a secure end-to-end encrypted communication channel and establishes a language for Wallets & Applications to understand each other.
    
 
 
-### 3.1 Universal Identity - Crux ID
+### 3.1 Universal Identity - CRUX ID
 
 Our solution to the above outlined problems is centered around the concept of a Universal Identity owned by the User - called a CRUX ID.
 The CRUX ID is represented by a globally unique human readable name such as `emily@crux`. This human readable name is tied to a Private Key stored securely in any Wallet of the user's choice.
@@ -137,6 +138,7 @@ A CRUX ID is required to be
 - Human readable - IDs must be easy to read and communicate
 - Strongly owned - The proof of identity must reside securely only in any secure Wallet of User's choice 
 
+CRUX does not introduce any specific platform requirement. Users can choose any CRUX compatible Wallet, and any Wallet is free to implement support for CRUX IDs.
 
 ### 3.2 P2P Crypto Payments for Humans - CRUXPay Protocol
 
@@ -155,15 +157,12 @@ The CRUX ID to Address mapping powering this experience should be securely verif
 
 The addresses which Emily explicitly consents to being made public against her CRUX ID are referred to as 'Public Addresses'
 
-
-
-
-### 3.3 Ecosystem Interoperability - CRUXConnect Protocol
+### 3.3 Ecosystem Interoperability - CRUXGateway Protocol
 [diagram]
 
 With CRUX IDs we have a universal verifiable identity owned by Users in their Wallets. 
 
-CRUXConnect protocol establishes the following:
+CRUXGateway protocol establishes the following:
 
 Firstly, an on-demand end-to-end encrypted communication channel between User's Wallet and any Application (decentralized or conventional)  
 Secondly, A common language for Applications to 'talk' to Wallets. Applications want to interact with the Blockchain in a variety of ways **with the User's explicit consent**:
@@ -174,22 +173,22 @@ Secondly, A common language for Applications to 'talk' to Wallets. Applications 
 
 
 ## 4 Architecture Overview
+
 ### 4.1 CRUX ID
 
-CRUX IDs are powered by the Blockstack Naming Service.
-
-![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/solution1.png)
-
-![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/solution1b.png)
+CRUX IDs are powered by the Blockstack Naming Service. Each CRUX ID has a 1:1 mapping to a Blockstack ID. The SDK defines rules of converting between CRUX IDs and Blockstack IDs. 
 
 BNS has two jobs -  
 
-1. Reserving a Name for a PublicKey - AKA "Registration of CRUX ID"  
+##### 4.1.1 Reserving a Name for a PublicKey - AKA "Registration of CRUX ID"
+![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/solution1.png)
+  
 BNS represents ownership of each identity with a standard ECDSA keypair, same as what the Bitcoin network uses to represent ownership of Bitcoin.
 Bitcoin gives us a way to establish global consensus on an append-only log in a network of trustless nodes. In the Bitcoin network, the network of nodes are incentivized to establish a global view of the append only log.   
 BNS binds a KeyPair to a Name by storing it in this append only log. The log is secured by the same hash power and cryptography that secures value and ownership of money in the Bitcoin Network. 
 
-2. Resolving a Name to a PublicKey - AKA "CRUX ID as Public Key Infrastructure"
+##### 4.1.2 Resolving a Name to a PublicKey - AKA "CRUX ID as Public Key Infrastructure"
+![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/solution1b.png)
 Now that the Name->PublicKey mapping is stored securely in the Bitcoin blockchain, we can ‘resolve’ the easy to remember name to a public key, similar to how DNS helps resolve an easy to remember domain name to an IP address.  
 If we rely solely on the Bitcoin Blockchain for this purpose, each lookup would be very slow since the entire Bitcoin Blockchain would need to be parsed to determine the result.  
 BlockStack helps to offload these lookups to entities known as BNS Nodes which make up the BNS Network. Each BNS Node keeps continuously monitoring its independent view of the Bitcoin blockchain and indexes any new name registrations or modifications to old ones. Applications can then simply ask a trusted BNS Node for a quick answer.
@@ -222,28 +221,40 @@ An individual Gaia Hub may or may not be decentralized, and it does not need to 
 
 
 #### 4.2.2 Standardizing Crypto Payments
+
+
+The cryptocurrency industry is at a nascent stage, with tens of thousands of blockchain projects that use diverse platforms with multiple coding languages, protocols, consensus mechanisms, and privacy measures. Enhancing standards and interoperability is key to unlocking the next phase of growth that lies ahead of us. 
+
+We consider payment and currency interoperability to be a big part of the User experience of cryptocurrencies which requires standardization efforts.
+
+ 
+We need to make the Payment process fool-proof. The vision is that no User should be confused about currency symbols, hard forks, soft forks, address formats, decimal precision, etc when making payments.
+
 ![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/mappings.png)
 
-There is lack of standardization in the Crypto industry. Within ecosystems like Ethereum, there is standardization of currencies (ERC20), but across the industry as a whole, they are missing. This is so much so that there is still no well established a consensus even on how to encode information in QR Codes.
 
-We need to make the Payment process fool-proof. The vision is that no User should be confused about currency symbols, hard forks, soft forks, address formats, decimal precision, etc when making payments.  
-1. CRUXPay establishes a common format for representing addresses.
-2. Establish a reference 'Global Asset List' with each currency represented as an 'Asset' each with its own unique 'Asset Idenfier'. The Global Asset List is expressed in as unopiniated and unambiguous terms as possible. 
-3. Wallets implementing CRUXPay can map their currency identifiers against specific Assets in the Global Asset List.
+CRUXPay establishes a common format for representing addresses.
 
-With such a standardized one-time setup, diverse Wallets across the ecosystem can seamless pay to each other's Users. This deterministic mapping means Users will never be able to send funds 'by mistake' to a wrong address or transact using an outdated token contract address. This will also help avoid confusion during forks and migrations where assets get split, and cause lots of confusion.
+##### Global Asset List
+Establish a reference 'Global Asset List' with each currency represented as an 'Asset' each with its own unique 'Asset Idenfier'. The Global Asset List is expressed in as unopiniated and unambiguous terms as possible. 
 
 The Global Asset List also standardizes decimal precision so that currency amounts can be communicated across members of the ecosystem in an unambiguous manner.
 
-### 4.3 CRUXConnect Protocol
+##### Client Asset Mapping
+
+Wallets implementing CRUXPay can map their currency identifiers against specific Assets in the Global Asset List.
+
+
+
+### 4.3 CRUXGateway Protocol
 
 A securely stored identity in a User's Wallet allows anyone to easily establish a secure end-to-end encrypted communication channel with the Wallet.   
 This can be achieved because anyone can now resolve a human readable CRUX ID to the Public Key of the ID owner. Elliptic-curve Diffie–Hellman (ECDH) helps the Application and the Wallet both derive the same shared secret.
 
 This means, independent of the transport layer used, at CRUX's level we can implement secure communication between Application and Wallet.
-We use WebRTC as the transport layer for CRUXConnect. WebRTC allows two peers to exchange data without intermediaries. The peers need the assistance of an entity generalized as the 'Bridge Server' which helps the peers discover each other on the network. Once discovered, the two peers can independantly speakto each other without need the Bridge Server, until network conditions change such that they can no longer find each other. 
+We use WebRTC as the transport layer for CRUXGateway. WebRTC allows two peers to exchange data without intermediaries. The peers need the assistance of an entity generalized as the 'Bridge Server' which helps the peers discover each other on the network. Once discovered, the two peers can independantly speakto each other without need the Bridge Server, until network conditions change such that they can no longer find each other. 
 
-![Cconect](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/cruxconnect.png)
+![Cconect](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/CRUXGateway.png)
 
 Users can whitelist individual Applications in their Wallet to whom they want to grant communication rights to. 
 
@@ -252,7 +263,7 @@ Applications can connect to User's CRUX ID residing in the User's Wallet and com
 2. PaymentRequest - For financial transactions, Applications can request a specific standardized currency, and a specific amount. The User will get a Payment Request notification on their Website.
 3. IdentityProofRequest - The Application can ask the User to prove the ownership of the identity with this. This can be used to authenticate users securely for any use case.
 
-CRUXConnect can be consumed as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with 1 line of code change. 
+CRUXGateway can be consumed as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with 1 line of code change. 
 
 
 ## 5 Appendices
