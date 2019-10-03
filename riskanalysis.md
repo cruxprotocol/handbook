@@ -69,36 +69,10 @@ await this._payIDClaim.encrypt();
 Users register a human readable name  
 
 #### Threats
-foo
+
 
 ### CRUX Name Resolution
 
 ### CRUXPay Public Addresses
 
 ### CRUXConnect Communication Messaging
-
-
- 
-
-### 1 CRUX ID
- 
-
-Asset - private key
-Asset - globally unique mapping of a unique name to a specific public key
-Asset - 
-
-Threat 
-
-#### 1.1. Private Key
-- Private Key: At Rest, In Memory
-#### 1.2 Securely binding a unique name to the User's public key
-- Registration - Reserving a name for a Public key
-#### 1.3 Securely resolving a name to its owner's public key
-- Resolving Name for a Public Key
-
-### 2 CRUXPay Protocol 
-#### 2.1 Securely storing the User's Public Addresses
-- Storing and Reading records from Gaia
-
-### 3 CRUXConnect Protocol
-#### 3.1 Secure communication between Application and Wallet
