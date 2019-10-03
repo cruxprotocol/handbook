@@ -54,13 +54,13 @@ Users who want to use an exchange or a merchant
 Users trust Wallets with their Private Keys.   
 Wallets are the gateway to the Blockchain.
 
-3. **Blockchain**  
-Transmit value securely to another entity.  
-Securely execute business logic.  
-
-4. **Services & Applications**  
+3. **Services & Applications**  
 Any use case which involve interactions with the Blockchain.   
 Broad classification can be understood as - dApps, exchanges, merchants, gaming etc.
+
+4. **Blockchain**  
+Transmit value securely to another entity.  
+Securely execute business logic.  
 
 ### 2.2 Analysis
 
@@ -98,7 +98,6 @@ As members of the Blockchain ecosystem we need to make sure we are communicating
 
 As a young fast growing ecosystem, there are many different use cases that many talented teams across the world are trying to solve in their own way. As a result there are many Blockchains and many cryptocurrencies many with their own unique architectures, strengths and weaknesses. We believe this will continue to be the case as the industry finds its feet.  
 This diversity exacerbates the cognitive load a User needs to go through when introduced to new cryptocurrencies.
-
 #### 2.2.2 Scenario 2 - Interactions with Applications
 
 Lets try to understand the user experience when a User tries to use Services & Applications in the Blockchain ecosystem. 
@@ -117,6 +116,7 @@ These Applications need to interact with the Blockchain via the User's Wallet. T
 - Scanning a QR Code - this is possible only if the Wallet device has a camera *and* if the wallet and application are on 2 different devices. This prevents a fluid experience for Users since their options are always limited.
 - More sophisticated interactions which require smart contract function calls require a special Wallet as a browser extension to bridge the gap. Or a specific App. This introduces more complications in the User flow. This forces Users to store cryptocurrencies in several different wallets on different platforms depending on the application. eg MetaMask, TronLink.   
 
+Today's Blockchain applications are forced to impose requirements on Wallet platforms due to this communication gap. Managing wallets securely itself is a big mental shift from the modern world, now our Users are forced to maintain multiple Wallets. We envision a world where any Application can work with any Wallet.
 
 ## 3 Solution
 
@@ -138,7 +138,11 @@ A CRUX ID is required to be
 - Human readable - IDs must be easy to read and communicate
 - Strongly owned - The proof of identity must reside securely only in any secure Wallet of User's choice 
 
-CRUX does not introduce any specific platform requirement. Users can choose any CRUX compatible Wallet, and any Wallet is free to implement support for CRUX IDs.
+
+CRUX IDs simply establish the ownership of a private key to a human readable name. This ownership must be held to the highest level of security standards and must be cryptographically verifiable by anybody.
+
+CRUX IDs are independent - they do not depend on its creators. CRUX does not introduce any specific platform requirement. Users can choose any CRUX compatible Wallet, and any Wallet is free to implement support for CRUX IDs.
+ 
 
 ### 3.2 P2P Crypto Payments for Humans - CRUXPay Protocol
 
@@ -146,30 +150,33 @@ With CRUX IDs we have a universal verifiable identity owned by Users in their Wa
 
 CRUXPay Protocol is a layer which allows Users to bind cryptocurrency addresses of their choice - to this identity.
 
+Lets say Matt is trying to send cryptocurrencies to Emily. With CRUXPay the scenario looks like this -   
 Matt should be able to pay to Emily by simply entering her CRUX ID `emily@crux` in his Wallet. Matt may or may not have a CRUX ID himself.
 Matt should not be exposed to any other blockchain implementation details. The only things relevant to him are - 
 - Emily's CRUX ID
 - The cryptocurrency he wants to pay in
 - How much he wants to pay
 
-This needs to happen with Emily's privacy in mind. Only addresses that she consents to must be made public.
+Matt must have the same experience across all cryptocurrencies. He should not be at risk of incorrect payments due to ongoing forks or migrations of the underlying technology powering the cryptocurrency.  
+
+This needs to happen with Emily's privacy in mind. Only addresses that she consents to must be made public. The addresses which Emily explicitly consents to being made public against her CRUX ID are referred to as 'Public Addresses'
+
 The CRUX ID to Address mapping powering this experience should be securely verifiable by Matt's Wallet. Matt must be guaranteed he is paying to the right address. 
 
-The addresses which Emily explicitly consents to being made public against her CRUX ID are referred to as 'Public Addresses'
-
 ### 3.3 Ecosystem Interoperability - CRUXGateway Protocol
-[diagram]
 
 With CRUX IDs we have a universal verifiable identity owned by Users in their Wallets. 
 
 CRUXGateway protocol establishes the following:
 
 Firstly, an on-demand end-to-end encrypted communication channel between User's Wallet and any Application (decentralized or conventional)  
-Secondly, A common language for Applications to 'talk' to Wallets. Applications want to interact with the Blockchain in a variety of ways **with the User's explicit consent**:
+Secondly, A common language for Applications to 'talk' to Wallets. Todays Applications want to interact with the Blockchain in a variety of ways. 
 - Applications should be able to request payments from the User.
 - Applications should be able to schedule recurring payment requests
 - Applications should be able to access a smart contract's interface using a transaction
 - Applications should be able to simply validate the identity of its User, using CRUX ID, similarly to how "Login With Google" works. CRUX should enable Applications to 'Login With CRUX'.
+
+CRUXGateway lets any application securely 'talk' to any Wallet supporting CRUX. That means, Applications can support interactions with multiple cryptocurrencies through a uniform API. They will automatically support any old or new Wallets that support CRUX. Anyone is free to integrate CRUX. 
 
 
 ## 4 Architecture Overview
@@ -233,16 +240,31 @@ We need to make the Payment process fool-proof. The vision is that no User shoul
 ![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/mappings.png)
 
 
-CRUXPay establishes a common format for representing addresses.
+##### Global Asset List & Client Asset Mapping
 
-##### Global Asset List
-Establish a reference 'Global Asset List' with each currency represented as an 'Asset' each with its own unique 'Asset Idenfier'. The Global Asset List is expressed in as unopiniated and unambiguous terms as possible. 
+We establish a reference 'Global Asset List' with each currency represented as an 'Asset' each with its own unique 'Asset Identifier'. The Global Asset List is expressed in as unopinionated and unambiguous terms as possible. 
 
-The Global Asset List also standardizes decimal precision so that currency amounts can be communicated across members of the ecosystem in an unambiguous manner.
+Clients may refer to each asset in their own way. Some might call it `bitcoin`, some `btc`, some `BTC`. At the time of onboarding, Wallets need to explicitly map CRUX Assets to identifiers of their choice. ≠
 
-##### Client Asset Mapping
+An Asset is represented by a UUID - known as an `AssetID`. Each Asset contains several fields which aim to express information about the Asset in as unambigious terms as possible.
 
-Wallets implementing CRUXPay can map their currency identifiers against specific Assets in the Global Asset List.
+**An Asset never changes**. The Global Asset is an append only log. For example: 
+- When a blockchain has a hard fork, there will be two new Assets created. The older one does not change. Wallets aware of the hard fork can explicitly map the newly created assets to the corresponding so that Users are never exposed to unintended side effects of the hard fork. 
+- When a cryptocurrency migrates from a Blockchain to another, again, lead to a new Asset in the Global Asset List. Whenever Wallets decide to support the migrated cryptocurrency, they can update their Client Asset Mapping.
+
+Example:
+```
+{
+    "assetId":"73b1618a-d61f-4dd4-87c3-853a967d4490",
+    "symbol":"XYZ",
+    "name":"XYZ Token",
+    "assetType":"ERC20",
+    "decimals":18,
+    "assetIdentifierName":"Contract Address",
+    "assetIdentifierValue":"0xB97048628DB6B6........833e95Dbe1A905B280",
+    "parentAssetId":"4e4d9982-3469-421b-ab60-2c0c2f05386a"
+}
+```
 
 
 
@@ -263,7 +285,7 @@ Applications can connect to User's CRUX ID residing in the User's Wallet and com
 2. PaymentRequest - For financial transactions, Applications can request a specific standardized currency, and a specific amount. The User will get a Payment Request notification on their Website.
 3. IdentityProofRequest - The Application can ask the User to prove the ownership of the identity with this. This can be used to authenticate users securely for any use case.
 
-CRUXGateway can be consumed as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with 1 line of code change. 
+CRUXGateway can be consumed as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with a few lines of code change. That means any existing Ethereum, TRON, or EOS dApp will be able to connect to any Wallet which supports CRUX protocol, and make the desired smart contract or currency transfer transactions.
 
 
 ## 5 Appendices
