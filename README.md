@@ -276,7 +276,7 @@ This can be achieved because anyone can now resolve a human readable CRUX ID to 
 This means, independent of the transport layer used, at CRUX's level we can implement secure communication between Application and Wallet.
 We use WebRTC as the transport layer for CRUXGateway. WebRTC allows two peers to exchange data without intermediaries. The peers need the assistance of an entity generalized as the 'Bridge Server' which helps the peers discover each other on the network. Once discovered, the two peers can independantly speakto each other without need the Bridge Server, until network conditions change such that they can no longer find each other. 
 
-![Cconect](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/CRUXGateway.png)
+![Cconect](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/cruxconnect.png)
 
 Users can whitelist individual Applications in their Wallet to whom they want to grant communication rights to. 
 
