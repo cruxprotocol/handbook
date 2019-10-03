@@ -147,12 +147,13 @@ Any reads to the Gaia data from the CRUX SDK can verify the Authenticity and Int
 
 For example 
 
-Figures 1:
 ![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/solution2.png)
+
 Here we see User A uses his Wallet to make certain addresses public on Gaia. He is able to write to Gaia Hub because his CRUX private key is present on his Wallet. 
 
 
 ![Problem2](https://s3-ap-southeast-1.amazonaws.com/files.coinswitch.co/cruxpay/handbook_images/solution2b.png)
+
 User B resolves is able to get User A's public key by querying the BNS Network. User B's Wallet asks multiple independent nodes in the network for User A's public key.  
 User B is able to derive User A's Gaia record location from this information. User B fetches the Gaia record for User A's public addresses. His Wallet verifies the data's integrity and authenticity using the Public Key he had got earlier. 
 
