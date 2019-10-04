@@ -151,7 +151,7 @@ We need to make sure that the User and only the User can make any changes to the
 
 Blockstack provides a mechanism to do this known as [Gaia Hubs](https://github.com/blockstack/gaia). Gaia works by hosting data in one or more existing storage systems of the user's choice. These storage systems are typically cloud storage systems. There is existing support for S3 and Azure Blob Storage, but the driver model allows for other backend support as well. The point is, the user gets to choose where their data lives, and Gaia enables applications to access it via a uniform API.
 
-Writes to Gaia requires an authentication token which needs to be signed with the User owned private key. Any data written is always written along with an [HMAC](https://en.wikipedia.org/wiki/HMAC); also generated using the same private key. The Auth token helps the Gaia Hub ensure write-time correctness and the content HMAC sets others up to do read-time verification.
+Writes to Gaia requires an authentication token which needs to be signed with the User owned private key. Any data written is always written along with an [HMAC](https://en.wikipedia.org/wiki/HMAC); also generated using the same private key. The Auth token helps the Gaia Hub ensure write-time correctness and the content's HMAC sets others up to do read-time verification.
 
 Any reads to the Gaia data from the CRUX SDK can verify the Authenticity and Integrity of the data using the HMAC. Verifying the data using HMAC requires a public key from a trusted source. We have already established a trusted Public Key Infrastructure system in the form of Blockstack IDs and the associated Blockstack Naming Service. We ask multiple independently run nodes for the public key. 
 
