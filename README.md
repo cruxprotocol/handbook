@@ -2,27 +2,32 @@
 
 ### Contents
 
-  * [1 What is CRUX?](#1-what-is-crux)
-  * [2 Motivation &amp; Problem](#2-motivation--problem)
-     * [2.1 Stakeholders](#21-stakeholders)
-     * [2.2 Analysis](#22-analysis)
+* [1 What is CRUX?](#1-what-is-crux)
+* [2 Motivation &amp; Problem](#2-motivation--problem)
+    * [2.1 Stakeholders](#21-stakeholders)
+    * [2.2 Analysis](#22-analysis)
         * [2.2.1 Scenario 1 - P2P Interactions](#221-scenario-1---p2p-interactions)
         * [2.2.2 Scenario 2 - Interactions with Applications](#222-scenario-2---interactions-with-applications)
-  * [3 Solution](#3-solution)
-     * [3.1 Universal Identity - CRUX ID](#31-universal-identity---crux-id)
-     * [3.2 P2P Crypto Payments for Humans - CRUXPay Protocol](#32-p2p-crypto-payments-for-humans---cruxpay-protocol)
-     * [3.3 Ecosystem Interoperability - CRUXGateway Protocol](#33-ecosystem-interoperability---cruxgateway-protocol)
-  * [4 Architecture Overview](#4-architecture-overview)
-     * [4.1 CRUX ID](#41-crux-id)
+* [3 Solution](#3-solution)
+    * [3.1 Universal Identity - CRUX ID](#31-universal-identity---crux-id)
+    * [3.2 P2P Crypto Payments for Humans - CRUXPay Protocol](#32-p2p-crypto-payments-for-humans---cruxpay-protocol)
+    * [3.3 Ecosystem Interoperability - CRUXGateway Protocol](#33-ecosystem-interoperability---cruxgateway-protocol)
+* [4 Architecture Overview](#4-architecture-overview)
+    * [4.1 CRUX ID](#41-crux-id)
         * [4.1.1 Reserving a Name for a PublicKey - AKA "Registration of CRUX ID"](#411-reserving-a-name-for-a-publickey---aka-registration-of-crux-id)
         * [4.1.2 Resolving a Name to a PublicKey - AKA "CRUX ID as Public Key Infrastructure"](#412-resolving-a-name-to-a-publickey---aka-crux-id-as-public-key-infrastructure)
-     * [4.2 CRUXPay Protocol](#42-cruxpay-protocol)
+        * [4.1.3 Risk Analysis](#413-risk-analysis)
+    * [4.2 CRUXPay Protocol](#42-cruxpay-protocol)
         * [4.2.1 Secure Storage of Address Mapping](#421-secure-storage-of-address-mapping)
         * [4.2.2 Standardizing Crypto Payments](#422-standardizing-crypto-payments)
-     * [4.3 CRUXGateway Protocol](#43-cruxgateway-protocol)
-  * [5 Appendices](#5-appendices)
-     * [5.1 <a href="https://github.com/cruxprotocol/handbook/blob/master/background.md">Background Study</a>](#51-background-study)
-     * [5.2 <a href="https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md">Risk Analysis</a>](#52-risk-analysis)
+        * [Global Asset List &amp; Client Asset Mapping](#global-asset-list--client-asset-mapping)
+        * [4.2.3 Risk Analysis](#423-risk-analysis)
+    * [4.3 CRUXGateway Protocol](#43-cruxgateway-protocol)
+        * [4.3.1 Risk Analysis](#431-risk-analysis)
+* [5 Appendices](#5-appendices)
+    * [5.1 <a href="https://github.com/cruxprotocol/handbook/blob/master/background.md">Background Study</a>](#51-background-study)
+    * [5.2 <a href="https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md">Risk Analysis</a>](#52-risk-analysis)
+
 
 
 ## 1 What is CRUX?
@@ -199,6 +204,11 @@ BNS binds a KeyPair to a Name by storing it in this append only log. The log is 
 Now that the Name->PublicKey mapping is stored securely in the Bitcoin blockchain, we can ‘resolve’ the easy to remember name to a public key, similar to how DNS helps resolve an easy to remember domain name to an IP address.  
 If we rely solely on the Bitcoin Blockchain for this purpose, each lookup would be very slow since the entire Bitcoin Blockchain would need to be parsed to determine the result.  
 BlockStack helps to offload these lookups to entities known as BNS Nodes which make up the BNS Network. Each BNS Node keeps continuously monitoring its independent view of the Bitcoin blockchain and indexes any new name registrations or modifications to old ones. Applications can then simply ask a trusted BNS Node for a quick answer.
+
+#### 4.1.3 Risk Analysis
+
+Section 2.1, 2.2 and 2.3 of the [Risk Analysis document](https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md) walks through the new risks introduced with CRUX IDs, and how those risks are mitigated.
+
 ### 4.2 CRUXPay Protocol
 
 There are two major parts to CRUXPay - 
@@ -266,7 +276,9 @@ Example:
 }
 ```
 
+#### 4.2.3 Risk Analysis
 
+Section 2.4 of the [Risk Analysis document](https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md) walks through the new risks introduced with the CRUXPay Protocol, and how those risks are mitigated.
 
 ### 4.3 CRUXGateway Protocol
 
@@ -287,6 +299,9 @@ Applications can connect to User's CRUX ID residing in the User's Wallet and com
 
 CRUXGateway can be consumed as a Web3Provider, which means any dApp using web3 and web3-like standards can integrate CRUX as a web3 provider with a few lines of code change. That means any existing Ethereum, TRON, or EOS dApp will be able to connect to any Wallet which supports CRUX protocol, and make the desired smart contract or currency transfer transactions.
 
+#### 4.3.1 Risk Analysis
+
+Section 2.5 of the [Risk Analysis document](https://github.com/cruxprotocol/handbook/blob/master/riskanalysis.md) walks through the new risks introduced with CRUXGateway protocol, and how those risks are mitigated.
 
 ## 5 Appendices
 ### 5.1 [Background Study](https://github.com/cruxprotocol/handbook/blob/master/background.md)
