@@ -15,7 +15,7 @@
         * [2.3.1 Threat - Malicious Resolver](#231-threat---malicious-resolver)
     * [2.4 CRUXPay Public Addresses](#24-cruxpay-public-addresses)
         * [2.4.1 Threat - Unauthorized Modification of Public Addresses](#241-threat---unauthorized-modification-of-public-addresses)
-    * [2.5 CRUXConnect Communication Messaging](#25-cruxconnect-communication-messaging)
+    * [2.5 CRUXGateway Communication Messaging](#25-cruxgateway-communication-messaging)
  
 
 ## 1 Introduction
@@ -172,7 +172,7 @@ User B is able to derive User A's Gaia record location from this information. Us
 This process ensures User B is paying exactly to the intended address.
 
 
-### 2.5 CRUXConnect Communication Messaging
+### 2.5 CRUXGateway Communication Messaging
 
 [upcoming]
 
