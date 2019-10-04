@@ -3,7 +3,7 @@
 
 ## Contents
 
-* [1 Preface](#1-preface)
+* [1 Introduction](#1-introduction)
 * [2 Risk Assets](#2-risk-assets)
     * [2.1 CRUX Identity Private Key](#21-crux-identity-private-key)
         * [2.1.1 Threat - Unauthorized access of Private Key at rest](#211-threat---unauthorized-access-of-private-key-at-rest)
@@ -15,6 +15,7 @@
         * [2.3.1 Threat - Malicious Resolver](#231-threat---malicious-resolver)
     * [2.4 CRUXPay Public Addresses](#24-cruxpay-public-addresses)
         * [2.4.1 Threat - Unauthorized Modification of Public Addresses](#241-threat---unauthorized-modification-of-public-addresses)
+    * [2.5 CRUXConnect Communication Messaging](#25-cruxconnect-communication-messaging)
  
 
 ## 1 Introduction
