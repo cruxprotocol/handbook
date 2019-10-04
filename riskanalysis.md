@@ -96,6 +96,17 @@ CRUX IDs are strongly-owned in the form of a keypair stored in any CRUX compatib
 
 At the heart of CRUX IDs architecture is the Blockstack Naming Service which helps maintain this strongly owned mapping. Blockstack uses a standard secp256k1 keypair (identical to bitcoin) to represent ownership of Blockstack IDs.
 
+How does a the private key ensure ownership and global uniqueness of the name? This is ensured by the Blockstack Naming Service. You can find out how BNS works [here](https://docs.blockstack.org/core/naming/introduction.html). In a nutshell, we can give instructions to BNS using transactions on the Bitcoin Blockchain. To register subdomains, we need to send a [NAME_UPDATE](https://docs.blockstack.org/core/wire-format.html) transaction on the Bitcoin Blockchain. This transaction contains very minimal information
+- Proof of ownership of Subdomain & Domain (signatures of respective private keys)
+- Hash of an entity known as 'ZoneFile'. 
+
+For eg. - [e2029990fa75e9fc642f149dad196ac6b64b9c4a6db254f23a580b7508fc34d7](https://blockchair.com/bitcoin/transaction/e2029990fa75e9fc642f149dad196ac6b64b9c4a6db254f23a580b7508fc34d7)
+
+'ZoneFile' can contain any arbitrary data. Only the hash of this Zonefile is stored on the Blockchain. The Zonefile itself is broadcasted to the BNS Network. The network waits for the relevant Bitcoin transaction to get confirmations, at which point it updates its indexes with the updated Zonefile hash and Zonefile against the name whose ownership was proved in the Bitcoin transaction.
+
+This way the registration is secured by the Bitcoin Blockchain's hash power.
+
+
 
 ##### 2.2.2 Threat - Frontrunning of IDs
 
